@@ -1,5 +1,5 @@
 // Business logics
-const { insert, list, modify, remove } = require("../services/Projects");
+const { insert, list, modify, remove } = require("../services/Sections");
 const httpStatus = require("http-status");
 
 const create = (req, res) => {
@@ -14,7 +14,8 @@ const create = (req, res) => {
 };
 
 const index = (req, res) => {
-  list()
+  if(!req?.params?.projectId) return res.status(httpStatus.BAD_REQUEST).send({ message : "Project ID required"})
+  list({ projectId : req.params.projectId })
     .then((response) => {
       res.status(httpStatus.OK).send(response);
     })
@@ -39,7 +40,7 @@ const update = (req, res) => {
     );
 };
 
-const deleteProject = (req, res) => {
+const deleteSection = (req, res) => {
   if (!req.params?.id) {
     return res.status(httpStatus.BAD_REQUEST).send({
       message: "ID value required",
@@ -67,5 +68,5 @@ module.exports = {
   create,
   index,
   update,
-  deleteProject,
+  deleteSection,
 };
