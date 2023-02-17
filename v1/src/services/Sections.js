@@ -8,19 +8,16 @@ const list = (where) => {
   return Section.find(where || {}).populate({
     path : "user_id",
     select : "full_name email profile_image"
-  }).populate({
-    path : "project_id",
-    select : "name"
-  });
+  })
 };
 
-const modify = (where, updateData) => {
+const modify = (data, id) => {
   // This block's goal is learning. JOI did this for us.
   // const updateData = Object.keys(data).reduce((obj, key) => {
   //   if (key !== "password") obj[key] = data[key];
   //   return obj;
   // }, {});
-  return Section.findOneAndUpdate(where, updateData, { new: true });
+  return Section.findByIdAndUpdate(id, data, { new: true });
 };
 
 const remove = (id) => {

@@ -1,3 +1,4 @@
 {"level":"info","message":{"_id":"63ddb5239d20dc12edc1548a","createdAt":"2023-02-04T01:30:11.810Z","name":"Big Short","updatedAt":"2023-02-04T01:30:11.810Z"},"service":"project-service"}
 {"level":"info","message":{"_id":"63e01651a5fc8f2a01d898b1","createdAt":"2023-02-05T20:49:21.491Z","name":"Annihilation","updatedAt":"2023-02-05T20:49:21.491Z","user_id":"63de784cadf63310cdcb2ecc"},"service":"project-service"}
 {"level":"info","message":{"_id":"63e02bfd6705183f5d979345","createdAt":"2023-02-05T22:21:50.022Z","name":"Best Me","updatedAt":"2023-02-05T22:21:50.022Z","user_id":"63de784cadf63310cdcb2ecc"},"service":"project-service"}
+{"level":"info","message":{"_id":"63ed8d8b57d04a5d8f10b0dc","createdAt":"2023-02-16T01:57:31.101Z","name":"Test Project","updatedAt":"2023-02-16T01:57:31.101Z","user_id":"63de784cadf63310cdcb2ecc"},"service":"project-service"}
