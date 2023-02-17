@@ -19,9 +19,14 @@ const remove = (id) => {
   return Task.findByIdAndDelete(id);
 };
 
+const findOne = (where) => {
+  return Task.findOne(where);
+}
+
 module.exports = {
   insert,
   list,
   modify,
   remove,
+  findOne
 };

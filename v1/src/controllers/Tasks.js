@@ -1,5 +1,5 @@
 // Business logics
-const { insert, list, modify, remove } = require("../services/Tasks");
+const { insert, list, modify, remove, findOne } = require("../services/Tasks");
 const httpStatus = require("http-status");
 
 const create = (req, res) => {
@@ -68,9 +68,42 @@ const deleteTask = (req, res) => {
     );
 };
 
+const makeComment = (req, res) => {
+  findOne({ _id : req.params.id}).then(mainTask => {
+    if(!mainTask) return res.status(httpStatus.NOT_FOUND).send({ message : "There is no task"})
+    const comment = {
+      ...req.body, 
+      commented_at : new Date(),
+      user_id : req.user
+    }
+    mainTask.comments.push(comment);
+    mainTask.save().then(updatedDoc => {
+      return res.status(httpStatus.OK).send(updatedDoc)
+    }).catch({ message : "Comment error"})
+  }).catch({ message : "Comment error"});
+  return ;
+}
+
+const deleteComment = (req, res) => {
+  findOne({ _id : req.params.id}).then(mainTask => {
+    if(!mainTask) return res.status(httpStatus.NOT_FOUND).send({ message : "There is no task"})
+
+    mainTask.comments = mainTask.comments.filter( (c) => c._id?.toString() !== req.params.commentId)
+    mainTask.save().then(updatedDoc => {
+      return res.status(httpStatus.OK).send(updatedDoc)
+    }).catch({ message : "Comment error"})
+  }).catch({ message : "Comment error"});
+  return ;
+}
+
+
+
+
 module.exports = {
   create,
   index,
   update,
   deleteTask,
+  makeComment,
+  deleteComment 
 };
